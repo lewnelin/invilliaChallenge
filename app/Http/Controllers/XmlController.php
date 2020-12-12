@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Person;
 use App\Models\Phone;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use SimpleXMLElement;
 
@@ -15,6 +16,10 @@ use SimpleXMLElement;
 class XmlController extends Controller
 {
 
+    /**
+     * @param SimpleXMLElement $orderXml
+     * @return int
+     */
     private static function processOrderXml(SimpleXMLElement $orderXml)
     {
         $order = new Order([
@@ -60,30 +65,35 @@ class XmlController extends Controller
 
     /**
      * @param Request $request
-     * @return array
+     * @return JsonResponse
      */
-    public function upload(Request $request)
+    public function upload(Request $request): JsonResponse
     {
         $request->validate(['file' => 'required']);
-        $file = $request->file('file');
 
-        $xml_string = $file->getContent();
-        $xml = new SimpleXMLElement($xml_string);
-        $processed = [];
+        try {
+            $file = $request->file('file');
 
-        foreach ($xml as $key => $elements) {
-            switch ($key) {
-                case 'person':
-                    $id = self::processPeopleXml($elements);
-                    $processed[] = $id;
-                    break;
-                case 'shiporder':
-                    $id = self::processOrderXml($elements);
-                    $processed[] = $id;
-                    break;
+            $xml_string = $file->getContent();
+            $xml = new SimpleXMLElement($xml_string);
+            $processed = [];
+
+            foreach ($xml as $key => $elements) {
+                switch ($key) {
+                    case 'person':
+                        $id = self::processPeopleXml($elements);
+                        $processed[] = $id;
+                        break;
+                    case 'shiporder':
+                        $id = self::processOrderXml($elements);
+                        $processed[] = $id;
+                        break;
+                }
             }
+        } catch (\Exception $e) {
+            return new JsonResponse('An Error Occurred: ' . $e->getMessage(), $e->getCode());
         }
 
-        return $processed;
+        return new JsonResponse($processed);
     }
 }
