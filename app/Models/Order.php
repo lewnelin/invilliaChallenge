@@ -13,6 +13,8 @@ class Order extends Model
 
     protected $fillable = ['id', 'person_id'];
 
+    protected $with = ['address', 'items'];
+
     /**
      * @return HasOne
      */

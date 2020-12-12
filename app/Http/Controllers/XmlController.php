@@ -26,7 +26,6 @@ class XmlController extends Controller
     private static function processOrderXml(SimpleXMLElement $orderXml, array $processed)
     {
         try {
-
             $order = Order::find((int)$orderXml->orderid);
 
             if (!$order) {
@@ -58,8 +57,9 @@ class XmlController extends Controller
                 $order->items()->save($item);
             }
 
-            $processed[] = $order->id;
+            $processed[] = $order;
         } catch (\Exception $exception) {
+            dd($exception);
             $processed[] = 'An Error Occurred with id ' . $orderXml->orderid . ' - ' . $exception->getMessage();
         }
 
@@ -92,7 +92,7 @@ class XmlController extends Controller
                 $person->phones()->save($phone);
             }
 
-            $processed[] = $person->id;
+            $processed[] = $person;
         } catch (\Exception $exception) {
             $processed[] = 'An Error Occurred with id ' . $personXml->personid . ' - ' . $exception->getMessage();
         }
@@ -129,8 +129,6 @@ class XmlController extends Controller
             return new JsonResponse('An Error Occurred: ' . $e->getMessage(), $e->getCode());
         }
 
-        dd($processed);
-
-        return new JsonResponse();
+        return new JsonResponse($processed);
     }
 }

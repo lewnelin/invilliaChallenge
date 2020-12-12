@@ -16,6 +16,8 @@ class Person extends Model
 
     protected $fillable = ['id', 'name'];
 
+    protected $with = ['phones'];
+
     /**
      * @return HasMany
      */
