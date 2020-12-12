@@ -10,6 +10,8 @@ Then execute the following commands:
  
 To start the application:
  - docker-compose up
+ 
+The application will be available at http://localhost:8000/
 
 To run phpunit tests:
  - docker-compose exec app php artisan test
