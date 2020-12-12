@@ -26,12 +26,17 @@ class XmlController extends Controller
     private static function processOrderXml(SimpleXMLElement $orderXml, array $processed)
     {
         try {
-            $order = new Order([
-                'id' => (int)$orderXml->orderid,
-                'person_id' => (int)$orderXml->orderperson
-            ]);
 
-            $order->save();
+            $order = Order::find((int)$orderXml->orderid);
+
+            if (!$order) {
+                $order = new Order([
+                    'id' => (int)$orderXml->orderid,
+                    'person_id' => (int)$orderXml->orderperson
+                ]);
+
+                $order->save();
+            }
 
             $addressXml = $orderXml->shipto;
             $address = new Address([
@@ -55,7 +60,7 @@ class XmlController extends Controller
 
             $processed[] = $order->id;
         } catch (\Exception $exception) {
-            $processed[] = 'An Error Occurred with id ' . $orderXml->orderid;
+            $processed[] = 'An Error Occurred with id ' . $orderXml->orderid . ' - ' . $exception->getMessage();
         }
 
         return $processed;
@@ -69,11 +74,15 @@ class XmlController extends Controller
     private static function processPeopleXml(SimpleXMLElement $personXml, array $processed)
     {
         try {
-            $person = new Person([
-                'id' => (int)$personXml->personid,
-                'name' => (string)$personXml->personname,
-            ]);
-            $person->save();
+            $person = Person::find((int)$personXml->personid);
+
+            if (!$person) {
+                $person = new Person([
+                    'id' => (int)$personXml->personid,
+                    'name' => (string)$personXml->personname,
+                ]);
+                $person->save();
+            }
 
             foreach ($personXml->phones->phone as $phoneXml) {
                 $phone = new Phone([
@@ -85,7 +94,7 @@ class XmlController extends Controller
 
             $processed[] = $person->id;
         } catch (\Exception $exception) {
-            $processed[] = 'An Error Occurred with id ' . $personXml->personid;
+            $processed[] = 'An Error Occurred with id ' . $personXml->personid . ' - ' . $exception->getMessage();
         }
 
         return $processed;
@@ -120,6 +129,8 @@ class XmlController extends Controller
             return new JsonResponse('An Error Occurred: ' . $e->getMessage(), $e->getCode());
         }
 
-        return new JsonResponse($processed);
+        dd($processed);
+
+        return new JsonResponse();
     }
 }
