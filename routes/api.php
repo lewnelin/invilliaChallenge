@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 /**
  * Rotas de Login e Tokens para API
  */
-//Route::group(['namespace' => 'Auth'], function () {
-//    Route::post('oauth/token', 'AuthController@auth');
-//    Route::post('login', 'AuthController@login');
-//});
+Route::group(['namespace' => 'App\Http\Controllers\Auth'], function () {
+    Route::post('oauth/token', 'AuthController@auth');
+    Route::post('login', 'AuthController@login');
+});
 
 Route::get('people', 'App\Http\Controllers\PersonController@list');
 Route::get('orders', 'App\Http\Controllers\OrderController@list');
+Route::get('users', 'App\Http\Controllers\UserController@list');

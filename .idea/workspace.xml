@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="299b6c27-7054-49d9-a87c-f27cc163dc45" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PersonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PersonController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +166,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Unit" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -178,14 +178,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\programacao\invilliaChallenge\invillia-challenge\tests\Unit" />
-      <recent name="D:\programacao\invilliaChallenge\invillia-challenge\app\Http\Controllers" />
-      <recent name="D:\programacao\invilliaChallenge\invillia-challenge\docker-compose\nginx" />
-      <recent name="D:\programacao\invilliaChallenge\invillia-challenge" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\programacao\invilliaChallenge\invillia-challenge\public\images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\programacao\invilliaChallenge\invillia-challenge\app\Http\Controllers" />
+      <recent name="D:\programacao\invilliaChallenge\invillia-challenge\tests\Unit" />
+      <recent name="D:\programacao\invilliaChallenge\invillia-challenge\docker-compose\nginx" />
+      <recent name="D:\programacao\invilliaChallenge\invillia-challenge" />
     </key>
   </component>
   <component name="RunManager">
@@ -207,7 +207,7 @@
       <workItem from="1607641965749" duration="6130000" />
       <workItem from="1607710114574" duration="10075000" />
       <workItem from="1607782899776" duration="5896000" />
-      <workItem from="1607900497049" duration="5413000" />
+      <workItem from="1607900497049" duration="6557000" />
     </task>
     <servers />
   </component>
