@@ -59,7 +59,6 @@ class XmlController extends Controller
 
             $processed[] = $order;
         } catch (\Exception $exception) {
-            dd($exception);
             $processed[] = 'An Error Occurred with id ' . $orderXml->orderid . ' - ' . $exception->getMessage();
         }
 
