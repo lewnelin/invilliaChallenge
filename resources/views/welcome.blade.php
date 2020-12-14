@@ -178,6 +178,10 @@
             overflow: hidden
         }
 
+        .overflow-auto {
+            overflow: auto
+        }
+
         .p-6 {
             padding: 1.5rem
         }
@@ -390,16 +394,33 @@
 
     <script>
         $(document).ready(function () {
+            function processJson(object) {
+                $.each(object, function(property, value) {
+                    if ($.isArray(value) || $.isPlainObject(value)) {
+                        return;
+                    }
+
+                    $(".resultAjax").append('<div>' + property + ' = ' + value + '</div>');
+                });
+            }
+
             $("#form").submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData(this);
+                $(".resultAjax").html('');
 
                 $.ajax({
                     url: '/upload',
                     type: 'POST',
                     data: formData,
                     success: function (data) {
-                        alert(data)
+                        if (data.length === 0) {
+                            console.log('No data');
+                        } else {
+                            $.each(data, function(i, object) {
+                                processJson(object);
+                            });
+                        }
                     },
                     cache: false,
                     contentType: false,
@@ -450,7 +471,7 @@
                 </div>
             </div>
         </div>
-        <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+        <div class="mt-8 bg-white dark:bg-gray-800 shadow overflow-auto sm:rounded-lg">
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <div class="p-6">
                     <div class="flex items-center">
