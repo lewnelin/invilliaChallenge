@@ -13,5 +13,9 @@ To start the application:
  
 The application will be available at http://localhost:8000/
 
+The api routes:
+ - http://localhost:8000/api/orders
+ - http://localhost:8000/api/people
+
 To run phpunit tests:
  - docker-compose exec app php artisan test
