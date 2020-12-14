@@ -21,3 +21,6 @@ use Illuminate\Support\Facades\Route;
 //    Route::post('oauth/token', 'AuthController@auth');
 //    Route::post('login', 'AuthController@login');
 //});
+
+Route::get('people', 'App\Http\Controllers\PersonController@list');
+Route::get('orders', 'App\Http\Controllers\OrderController@list');
