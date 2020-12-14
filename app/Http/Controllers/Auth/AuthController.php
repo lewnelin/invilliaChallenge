@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Http\Controllers\AccessTokenController;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -40,12 +41,10 @@ class AuthController extends AccessTokenController
 
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::guard('web')->user();
-            $user->roles;
 
             $token = $user->createToken($user->email . '-' . now());
 
             return response()->json([
-                'user' => $user,
                 'token' => $token->accessToken
             ]);
         }
