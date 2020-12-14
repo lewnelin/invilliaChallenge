@@ -6,7 +6,7 @@ To run this project you need to have composer and mysql installed and running.
 Then execute the following commands:
  - composer install
  - docker-compose build
- - docker-compose exec app php artisan migrate 
+ - docker-compose exec app php artisan migrate --seed
  
 To start the application:
  - docker-compose up
